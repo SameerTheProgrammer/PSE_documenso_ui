@@ -6,13 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint .", 
     "lint:fix": "eslint . --fix",
     "preview": "vite preview",
     "format:check": "prettier . --check",
-    "format:fix": "prettier . --write"
+    "format:fix": "prettier . --write",
+    "prepare": "husky"
   },
   "dependencies": {
+    "husky": "^9.1.5",
+    "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
