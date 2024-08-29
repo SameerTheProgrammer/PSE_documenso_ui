@@ -24,10 +24,14 @@ export function Navbar() {
     return (
         <VStack
             w="full"
+            position="fixed"
+            top={0}
+            left={0}
+            right={0}
             spacing={0}
             px={{ base: "20px", sm: "50px", md: "100px" }}
-            mb={5}
             border={0}
+            bg="white"
         >
             <HStack w="full" alignItems="center" py={2} justifyContent="space-between">
                 {/* left content */}
