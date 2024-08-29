@@ -57,10 +57,10 @@ const RightContent: React.FC = () => {
             <Flex gap={2}>
                 <Avatar size="sm" name="D C" bg="teal" />
                 <Flex direction={"column"} display={{ base: "none", md: "flex" }}>
-                    <Text w={"max-content"} lineHeight={1}>
+                    <Text w={"max-content"} lineHeight={1} fontSize={15}>
                         Sameer Kumar
                     </Text>
-                    <Text w={"max-content"} lineHeight={1}>
+                    <Text w={"max-content"} lineHeight={1} fontSize={12} opacity={0.6}>
                         Personal Account
                     </Text>
                 </Flex>
