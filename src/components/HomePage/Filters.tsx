@@ -80,9 +80,9 @@ const Filters = () => {
                     minW={"max-content"}
                 >
                     <option value="all">All Time</option>
-                    <option value="last-7-days">Last 7 Days</option>
-                    <option value="last-14-days">Last 14 Days</option>
-                    <option value="last-30-days">Last 30 Days</option>
+                    <option value="last_7_days">Last 7 Days</option>
+                    <option value="last_14_days">Last 14 Days</option>
+                    <option value="last_30_days">Last 30 Days</option>
                 </Select>
             </Flex>
         </Flex>
