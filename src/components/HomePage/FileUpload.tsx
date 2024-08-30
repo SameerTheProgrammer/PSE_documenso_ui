@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Box, Text, Button, Input, useToast } from "@chakra-ui/react";
+import { Box, Text, Button, Input, useToast, Icon } from "@chakra-ui/react";
+import { FiInbox } from "react-icons/fi";
 
 const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20 MB in bytes
 
@@ -81,7 +82,7 @@ const FileUpload: React.FC = () => {
         <Box
             width="100%"
             margin="0 auto"
-            padding="20px"
+            padding="50px 20px"
             border="2px dashed"
             borderColor="gray.300"
             borderRadius="md"
@@ -92,11 +93,14 @@ const FileUpload: React.FC = () => {
             {file ? (
                 <Text marginBottom="10px">{file.name}</Text>
             ) : (
-                <Text marginBottom="10px">
-                    Add a document
-                    <br />
-                    Drag & drop your PDF here.
-                </Text>
+                <>
+                    <Icon as={FiInbox} boxSize={55} />
+                    <Text marginBottom="10px">
+                        Add a document
+                        <br />
+                        Drag & drop your PDF here.
+                    </Text>
+                </>
             )}
             <Input
                 type="file"

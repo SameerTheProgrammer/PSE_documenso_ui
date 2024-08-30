@@ -7,7 +7,7 @@ const HomeLayout: React.FC = () => {
     return (
         <>
             <Navbar />
-            <Box w={"100%"} mt={75} px={{ base: "20px", sm: "50px", md: "100px" }}>
+            <Box w={"100%"} mt={100} px={{ base: "20px", sm: "50px", md: "100px" }}>
                 <Outlet />
             </Box>
         </>
