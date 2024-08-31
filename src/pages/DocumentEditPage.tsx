@@ -16,6 +16,10 @@ import {
     CardBody,
     CardHeader,
     Text,
+    CardFooter,
+    ButtonGroup,
+    useSteps,
+    Progress,
 } from "@chakra-ui/react";
 import { GoClock, GoPeople } from "react-icons/go";
 import { IoIosArrowBack } from "react-icons/io";
@@ -58,7 +62,20 @@ const recipientsList: IRecipientsStatus = {
     ],
 };
 
+const steps = [
+    { title: "First", description: "Contact Info" },
+    { title: "Second", description: "Date & Time" },
+    { title: "Third", description: "Select Rooms" },
+    { title: "Forth", description: "Select Rooms" },
+];
+
 const DocumentEdit = () => {
+    const { activeStep, goToPrevious, goToNext } = useSteps({
+        count: steps.length - 1,
+    });
+    const ActiveStep = activeStep + 1;
+    const progressPercent = (ActiveStep / steps.length) * 100;
+
     return (
         <Flex w={"100%"} direction={"column"}>
             <Box mb={5}>
@@ -155,42 +172,49 @@ const DocumentEdit = () => {
                                 <option value="no_restrictions">No restrictions</option>
                                 <option value="required_account">Required account</option>
                             </Select>
-                            <Button colorScheme="teal">Continue</Button>
-                        </Stack>
-                        <Stack spacing="4">
-                            <Input
-                                placeholder="Title"
-                                defaultValue="Junior_Backend_Developer.pdf"
-                            />
-                            <Select>
-                                <option value="no_restrictions">No restrictions</option>
-                                <option value="required_account">Required account</option>
-                            </Select>
-                            <Button colorScheme="teal">Continue</Button>
-                        </Stack>
-                        <Stack spacing="4">
-                            <Input
-                                placeholder="Title"
-                                defaultValue="Junior_Backend_Developer.pdf"
-                            />
-                            <Select>
-                                <option value="no_restrictions">No restrictions</option>
-                                <option value="required_account">Required account</option>
-                            </Select>
-                            <Button colorScheme="teal">Continue</Button>
-                        </Stack>
-                        <Stack spacing="4">
-                            <Input
-                                placeholder="Title"
-                                defaultValue="Junior_Backend_Developer.pdf"
-                            />
-                            <Select>
-                                <option value="no_restrictions">No restrictions</option>
-                                <option value="required_account">Required account</option>
-                            </Select>
-                            <Button colorScheme="teal">Continue</Button>
                         </Stack>
                     </CardBody>
+                    <CardFooter display={"flex"} flexDirection={"column"} rowGap={2}>
+                        <Box mb={3}>
+                            <Text mb={1}>
+                                Step {ActiveStep} of {steps.length}
+                            </Text>
+                            <Progress value={progressPercent} size="xs" colorScheme="pink" />
+                        </Box>
+                        <ButtonGroup
+                            w={"100%"}
+                            display={"flex"}
+                            justifyContent={"space-between"}
+                            spacing="5"
+                        >
+                            <Button
+                                w={"100%"}
+                                colorScheme="blue"
+                                onClick={() => {
+                                    goToPrevious();
+                                }}
+                                isDisabled={ActiveStep == 1}
+                            >
+                                Go Back
+                            </Button>
+                            {ActiveStep === steps.length ? (
+                                <Button w={"100%"} colorScheme="teal">
+                                    Submit
+                                </Button>
+                            ) : (
+                                <Button
+                                    w={"100%"}
+                                    onClick={() => {
+                                        goToNext();
+                                    }}
+                                    colorScheme="teal"
+                                    isDisabled={ActiveStep == steps.length}
+                                >
+                                    Continue
+                                </Button>
+                            )}
+                        </ButtonGroup>
+                    </CardFooter>
                 </Card>
             </Flex>
         </Flex>
