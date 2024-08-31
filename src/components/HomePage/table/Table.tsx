@@ -16,6 +16,7 @@ import {
     Text,
     Select,
     Stack,
+    Link as ChakraLink,
 } from "@chakra-ui/react";
 import { FaRegEdit } from "react-icons/fa";
 import { HiOutlineDotsVertical } from "react-icons/hi";
@@ -29,6 +30,7 @@ import {
 import { TableDocsData } from "../../../data/docData";
 import { ITableDocsData } from "../../../types/HomePagesTypes";
 import renderRecipientsPopover from "./RecipientsPopover";
+import { Link as ReactRouterLink } from "react-router-dom";
 
 // Define columns
 const columns = [
@@ -52,11 +54,15 @@ const columns = [
         header: "Status",
     },
     {
-        accessorKey: "id", // Placeholder for any action button, uses row's `id`
+        accessorKey: "id",
         header: "Actions",
-        cell: () => (
+        cell: (info: CellContext<ITableDocsData, string>) => (
             <Flex gap={5} align="center">
-                <Button leftIcon={<FaRegEdit />}>Edit</Button>
+                <Button leftIcon={<FaRegEdit />}>
+                    <ChakraLink as={ReactRouterLink} to={`/edit/${info.getValue()}`}>
+                        Edit
+                    </ChakraLink>
+                </Button>
                 <Icon as={HiOutlineDotsVertical} />
             </Flex>
         ),
