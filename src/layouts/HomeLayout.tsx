@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import { Navbar } from "../components/HomeLayout/navbar/index";
 
@@ -8,7 +8,9 @@ const HomeLayout: React.FC = () => {
         <>
             <Navbar />
             <Box w={"100%"} mt={100} px={{ base: "20px", sm: "50px", md: "100px" }}>
-                <Outlet />
+                <VStack marginY={8} spacing={8} w="full">
+                    <Outlet />
+                </VStack>
             </Box>
         </>
     );
