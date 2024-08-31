@@ -1,6 +1,9 @@
 import {
     Flex,
     Box,
+    Stack,
+    Input,
+    Select,
     Button,
     Heading,
     Link as ChakraLink,
@@ -114,6 +117,35 @@ const DocumentEdit = () => {
                     </Popover>
                 </Flex>
             </Box>
+
+            <Flex height="100vh">
+                {/* Left Side: PDF Viewer */}
+                <Box flex="2" borderWidth="1px" borderRadius="lg" overflow="hidden" padding="4">
+                    {/* Replace with actual PDF viewer component */}
+                    <Box height="100%" backgroundColor="gray.100">
+                        PDF Viewer Placeholder
+                    </Box>
+                </Box>
+
+                {/* Right Side: Configuration Panel */}
+                <Box
+                    flex="1"
+                    borderWidth="1px"
+                    borderRadius="lg"
+                    overflow="hidden"
+                    padding="4"
+                    marginLeft="4"
+                >
+                    <Stack spacing="4">
+                        <Input placeholder="Title" defaultValue="Junior_Backend_Developer.pdf" />
+                        <Select>
+                            <option value="no_restrictions">No restrictions</option>
+                            <option value="required_account">Required account</option>
+                        </Select>
+                        <Button colorScheme="teal">Continue</Button>
+                    </Stack>
+                </Box>
+            </Flex>
         </Flex>
     );
 };
