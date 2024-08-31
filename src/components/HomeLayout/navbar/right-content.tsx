@@ -1,5 +1,4 @@
 import {
-    Avatar,
     Flex,
     FocusLock,
     IconButton,
@@ -10,10 +9,10 @@ import {
     PopoverArrow,
     PopoverContent,
     PopoverTrigger,
-    Text,
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { FaSearch } from "react-icons/fa";
+import DetailedAvatar from "../../utils/DetailedAvatar";
 
 const RightContent: React.FC = () => {
     const firstFieldRef = useRef(null);
@@ -54,17 +53,12 @@ const RightContent: React.FC = () => {
                     <FaSearch color="teal" />
                 </InputLeftElement>
             </InputGroup>
-            <Flex gap={2}>
-                <Avatar size="sm" name="D C" bg="teal" />
-                <Flex direction={"column"} display={{ base: "none", md: "flex" }}>
-                    <Text w={"max-content"} lineHeight={1} fontSize={15}>
-                        Sameer Kumar
-                    </Text>
-                    <Text w={"max-content"} lineHeight={1} fontSize={12} opacity={0.6}>
-                        Personal Account
-                    </Text>
-                </Flex>
-            </Flex>
+            <DetailedAvatar
+                title="Sameer Kumar"
+                subTitle="Personal Account"
+                name="SK"
+                flexDisplay={{ base: "none", md: "flex" }}
+            />
         </Flex>
     );
 };
