@@ -1,10 +1,11 @@
+import { useMemo } from "react";
 import {
     Table as ChakraTable,
     TableContainer,
     Thead,
+    Tbody,
     Tr,
     Th,
-    Tbody,
     Td,
     Button,
     Flex,
@@ -22,92 +23,157 @@ import {
 } from "@chakra-ui/react";
 import { FaRegEdit } from "react-icons/fa";
 import { HiOutlineDotsVertical } from "react-icons/hi";
+import { useReactTable, getCoreRowModel, flexRender, CellContext } from "@tanstack/react-table";
 import DetailedAvatar from "./../../utils/DetailedAvatar";
+import { TableDocsData } from "../../../data/docData";
+
+interface Recipient {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: "signer" | "viewer";
+}
+
+// Define the type for the recipients status
+interface RecipientsStatus {
+    completed: Recipient[];
+    waiting: Recipient[];
+}
+
+// Define the type for the document data
+interface DocumentData {
+    id: string;
+    created: string;
+    title: string;
+    status: "process" | "complete" | "draft" | "inbox";
+    pdfUrl: string;
+    recipients: RecipientsStatus;
+}
+
+// Define columns
+const columns = [
+    {
+        accessorKey: "created",
+        header: "Created",
+        cell: (info: CellContext<DocumentData, string>) =>
+            new Date(info.getValue()).toLocaleString(),
+    },
+    {
+        accessorKey: "title",
+        header: "Title",
+    },
+    {
+        accessorKey: "recipients",
+        header: "Recipients",
+        cell: (info: CellContext<DocumentData, RecipientsStatus>) => {
+            const { completed, waiting } = info.getValue();
+            const allRecipients = [...completed, ...waiting];
+            return (
+                <Popover trigger="hover">
+                    <PopoverTrigger>
+                        <AvatarGroup cursor="pointer" size="sm" max={3}>
+                            {allRecipients.map((recipient: Recipient) => (
+                                <Avatar
+                                    key={recipient.id}
+                                    name={`${recipient.firstName} ${recipient.lastName}`}
+                                />
+                            ))}
+                        </AvatarGroup>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                        <PopoverArrow />
+                        <PopoverBody maxH={"250px"} overflowY={"auto"}>
+                            {completed.length > 0 && (
+                                <VStack alignItems={"flex-start"}>
+                                    <Heading as="h5" size="sm">
+                                        Completed
+                                    </Heading>
+                                    {completed.map((recipient: Recipient) => (
+                                        <DetailedAvatar
+                                            key={recipient.id}
+                                            title={recipient.email}
+                                            subTitle={recipient.role}
+                                            name={`${recipient.firstName[0]}${recipient.lastName[0]}`}
+                                        />
+                                    ))}
+                                </VStack>
+                            )}
+
+                            {waiting.length > 0 && (
+                                <VStack mt={2} alignItems={"flex-start"}>
+                                    <Heading as="h5" size="sm">
+                                        Waiting
+                                    </Heading>
+                                    {waiting.map((recipient: Recipient) => (
+                                        <DetailedAvatar
+                                            key={recipient.id}
+                                            title={recipient.email}
+                                            subTitle={recipient.role}
+                                            name={`${recipient.firstName[0]}${recipient.lastName[0]}`}
+                                        />
+                                    ))}
+                                </VStack>
+                            )}
+                        </PopoverBody>
+                    </PopoverContent>
+                </Popover>
+            );
+        },
+    },
+    {
+        accessorKey: "status",
+        header: "Status",
+    },
+    {
+        accessorKey: "id", // Placeholder for any action button, uses row's `id`
+        header: "Actions",
+        cell: () => (
+            <Flex gap={5} align="center">
+                <Button leftIcon={<FaRegEdit />}>Edit</Button>
+                <Icon as={HiOutlineDotsVertical} />
+            </Flex>
+        ),
+    },
+];
 
 const Table = () => {
+    const data = useMemo(() => TableDocsData, []);
+
+    const table = useReactTable({
+        data,
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+    });
+
     return (
         <>
-            <Box
-                as={TableContainer}
-                w={"100%"}
-                borderWidth={1}
-                overflowX={{ base: "auto", lg: "hidden" }}
-            >
+            <Box as={TableContainer} w="100%" borderWidth={1} overflowX="auto">
                 <ChakraTable variant="simple">
                     <Thead>
-                        <Tr bgColor={"gray.100"}>
-                            <Th>Created</Th>
-                            <Th>Title</Th>
-                            <Th>Recipients</Th>
-                            <Th>Status</Th>
-                            <Th>Actions</Th>
-                        </Tr>
+                        {table.getHeaderGroups().map((headerGroup) => (
+                            <Tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => (
+                                    <Th key={header.id}>
+                                        {flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext(),
+                                        )}
+                                    </Th>
+                                ))}
+                            </Tr>
+                        ))}
                     </Thead>
                     <Tbody>
-                        <Tr _hover={{ bgColor: "gray.100" }}>
-                            <Td>28/8/2024, 2:59 pm</Td>
-                            <Td>FEB 2023.pdf</Td>
-                            <Td>
-                                <Popover isLazy trigger="hover">
-                                    <PopoverTrigger>
-                                        <AvatarGroup cursor="pointer" size="sm" max={3}>
-                                            <Avatar name="Ryan Florence" />
-                                            <Avatar name="Segun Adebayo" />
-                                            <Avatar name="Kent Dodds" />
-                                            <Avatar name="Prosper Otemuyiwa" />
-                                            <Avatar name="Christian Nwamba" />
-                                        </AvatarGroup>
-                                    </PopoverTrigger>
-                                    <PopoverContent>
-                                        <PopoverArrow />
-                                        <PopoverBody maxH={"250px"} overflowY={"scroll"}>
-                                            <VStack alignItems={"flex-start"}>
-                                                <Heading as="h5" size="sm" cursor="pointer">
-                                                    Completed
-                                                </Heading>
-                                                <DetailedAvatar
-                                                    title="sameer.kumar@example.com"
-                                                    subTitle="Signer"
-                                                    name="SK"
-                                                />
-                                                <DetailedAvatar
-                                                    title="chirag.kumar@example.com"
-                                                    subTitle="Signer"
-                                                    name="chirag"
-                                                />
-                                            </VStack>
-                                            <VStack mt={2} alignItems={"flex-start"}>
-                                                <Heading as="h5" size="sm" cursor="pointer">
-                                                    Waiting
-                                                </Heading>
-                                                <DetailedAvatar
-                                                    title="sameer.kumar@example.com"
-                                                    subTitle="Signer"
-                                                    name="SK"
-                                                />
-                                                <DetailedAvatar
-                                                    title="chirag.kumar@example.com"
-                                                    subTitle="Signer"
-                                                    name="chirag"
-                                                />
-                                                <DetailedAvatar
-                                                    title="sameer.kumar@example.com"
-                                                    subTitle="Signer"
-                                                    name="SK"
-                                                />
-                                            </VStack>
-                                        </PopoverBody>
-                                    </PopoverContent>
-                                </Popover>
-                            </Td>
-                            <Td>Process</Td>
-                            <Td>
-                                <Flex gap={5} align="center">
-                                    <Button leftIcon={<FaRegEdit />}>Edit</Button>
-                                    <Icon as={HiOutlineDotsVertical} />
-                                </Flex>
-                            </Td>
-                        </Tr>
+                        {table.getRowModel().rows.map((row) => (
+                            <Tr key={row.id} _hover={{ bgColor: "gray.100" }}>
+                                {row.getVisibleCells().map((cell) => (
+                                    <Td key={cell.id}>
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    </Td>
+                                ))}
+                            </Tr>
+                        ))}
                     </Tbody>
                 </ChakraTable>
             </Box>
