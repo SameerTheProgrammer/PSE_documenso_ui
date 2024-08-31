@@ -26,37 +26,14 @@ import { HiOutlineDotsVertical } from "react-icons/hi";
 import { useReactTable, getCoreRowModel, flexRender, CellContext } from "@tanstack/react-table";
 import DetailedAvatar from "./../../utils/DetailedAvatar";
 import { TableDocsData } from "../../../data/docData";
-
-interface Recipient {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    role: "signer" | "viewer";
-}
-
-// Define the type for the recipients status
-interface RecipientsStatus {
-    completed: Recipient[];
-    waiting: Recipient[];
-}
-
-// Define the type for the document data
-interface DocumentData {
-    id: string;
-    created: string;
-    title: string;
-    status: "process" | "complete" | "draft" | "inbox";
-    pdfUrl: string;
-    recipients: RecipientsStatus;
-}
+import { IRecipientsStatus, ITableDocsData, IRecipient } from "../../../types/HomePagesTypes";
 
 // Define columns
 const columns = [
     {
         accessorKey: "created",
         header: "Created",
-        cell: (info: CellContext<DocumentData, string>) =>
+        cell: (info: CellContext<ITableDocsData, string>) =>
             new Date(info.getValue()).toLocaleString(),
     },
     {
@@ -66,14 +43,14 @@ const columns = [
     {
         accessorKey: "recipients",
         header: "Recipients",
-        cell: (info: CellContext<DocumentData, RecipientsStatus>) => {
+        cell: (info: CellContext<ITableDocsData, IRecipientsStatus>) => {
             const { completed, waiting } = info.getValue();
             const allRecipients = [...completed, ...waiting];
             return (
                 <Popover trigger="hover">
                     <PopoverTrigger>
                         <AvatarGroup cursor="pointer" size="sm" max={3}>
-                            {allRecipients.map((recipient: Recipient) => (
+                            {allRecipients.map((recipient: IRecipient) => (
                                 <Avatar
                                     key={recipient.id}
                                     name={`${recipient.firstName} ${recipient.lastName}`}
@@ -89,7 +66,7 @@ const columns = [
                                     <Heading as="h5" size="sm">
                                         Completed
                                     </Heading>
-                                    {completed.map((recipient: Recipient) => (
+                                    {completed.map((recipient: IRecipient) => (
                                         <DetailedAvatar
                                             key={recipient.id}
                                             title={recipient.email}
@@ -105,7 +82,7 @@ const columns = [
                                     <Heading as="h5" size="sm">
                                         Waiting
                                     </Heading>
-                                    {waiting.map((recipient: Recipient) => (
+                                    {waiting.map((recipient: IRecipient) => (
                                         <DetailedAvatar
                                             key={recipient.id}
                                             title={recipient.email}

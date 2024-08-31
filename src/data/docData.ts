@@ -1,29 +1,6 @@
-// Define the type for a recipient
-interface Recipient {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    role: "signer" | "viewer";
-}
+import { ITableDocsData } from "../types/HomePagesTypes";
 
-// Define the type for the recipients status
-interface RecipientsStatus {
-    completed: Recipient[];
-    waiting: Recipient[];
-}
-
-// Define the type for the document data
-interface DocumentData {
-    id: string;
-    created: string;
-    title: string;
-    status: "process" | "complete" | "draft" | "inbox";
-    pdfUrl: string;
-    recipients: RecipientsStatus;
-}
-
-export const TableDocsData: DocumentData[] = [
+export const TableDocsData: ITableDocsData[] = [
     {
         id: "doc1",
         created: "2024-08-31T12:00:00Z",
