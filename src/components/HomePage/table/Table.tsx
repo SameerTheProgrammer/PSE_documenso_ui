@@ -17,16 +17,14 @@ import {
     PopoverBody,
     PopoverContent,
     PopoverTrigger,
-    Heading,
-    VStack,
     PopoverArrow,
 } from "@chakra-ui/react";
 import { FaRegEdit } from "react-icons/fa";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { useReactTable, getCoreRowModel, flexRender, CellContext } from "@tanstack/react-table";
-import DetailedAvatar from "./../../utils/DetailedAvatar";
 import { TableDocsData } from "../../../data/docData";
 import { IRecipientsStatus, ITableDocsData, IRecipient } from "../../../types/HomePagesTypes";
+import RecipientList from "./RecipientList";
 
 // Define columns
 const columns = [
@@ -61,36 +59,16 @@ const columns = [
                     <PopoverContent>
                         <PopoverArrow />
                         <PopoverBody maxH={"250px"} overflowY={"auto"}>
-                            {completed.length > 0 && (
-                                <VStack alignItems={"flex-start"}>
-                                    <Heading as="h5" size="sm">
-                                        Completed
-                                    </Heading>
-                                    {completed.map((recipient: IRecipient) => (
-                                        <DetailedAvatar
-                                            key={recipient.id}
-                                            title={recipient.email}
-                                            subTitle={recipient.role}
-                                            name={`${recipient.firstName[0]}${recipient.lastName[0]}`}
+                            {Object.keys(info.getValue()).map(
+                                (key) =>
+                                    info.getValue()[key as keyof IRecipientsStatus].length > 0 && (
+                                        <RecipientList
+                                            recipients={
+                                                info.getValue()[key as keyof IRecipientsStatus]
+                                            }
+                                            status={key}
                                         />
-                                    ))}
-                                </VStack>
-                            )}
-
-                            {waiting.length > 0 && (
-                                <VStack mt={2} alignItems={"flex-start"}>
-                                    <Heading as="h5" size="sm">
-                                        Waiting
-                                    </Heading>
-                                    {waiting.map((recipient: IRecipient) => (
-                                        <DetailedAvatar
-                                            key={recipient.id}
-                                            title={recipient.email}
-                                            subTitle={recipient.role}
-                                            name={`${recipient.firstName[0]}${recipient.lastName[0]}`}
-                                        />
-                                    ))}
-                                </VStack>
+                                    ),
                             )}
                         </PopoverBody>
                     </PopoverContent>
