@@ -6,7 +6,7 @@ import Table from "./../components/HomePage/table/Table";
 const HomePage = () => {
     return (
         <>
-            <VStack mt={8} spacing={8} w="full">
+            <VStack my={8} spacing={8} w="full">
                 <FileUpload />
                 <Filters />
                 <Table />
