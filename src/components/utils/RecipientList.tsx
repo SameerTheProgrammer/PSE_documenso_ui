@@ -1,7 +1,7 @@
 import { VStack, Heading } from "@chakra-ui/react";
 import React from "react";
-import { IRecipient } from "../../../types/DocumentPagesTypes";
-import DetailedAvatar from "../../utils/DetailedAvatar";
+import { IRecipient } from "../../types/DocumentPagesTypes";
+import DetailedAvatar from "./DetailedAvatar";
 
 type RecipientListPropesType = { recipients: IRecipient[]; status: string };
 
