@@ -1,9 +1,6 @@
 import {
     Flex,
     Box,
-    Stack,
-    Input,
-    Select,
     Button,
     Heading,
     Link as ChakraLink,
@@ -63,10 +60,13 @@ const recipientsList: IRecipientsStatus = {
 };
 
 const steps = [
-    { title: "First", description: "Contact Info" },
-    { title: "Second", description: "Date & Time" },
-    { title: "Third", description: "Select Rooms" },
-    { title: "Forth", description: "Select Rooms" },
+    { heading: "General", description: "Configure general settings for the document." },
+    { heading: "Add Signers", description: "Add the people who will sign the document." },
+    { heading: "Add Fields", description: "Add all relevant fields for each recipient." },
+    {
+        heading: "Add Subject",
+        description: "Add the subject and message you wish to send to signers.",
+    },
 ];
 
 const DocumentEdit = () => {
@@ -158,22 +158,23 @@ const DocumentEdit = () => {
                     borderColor={"none"}
                 >
                     <CardHeader borderBottomWidth="1px">
-                        <Heading size="lg">General</Heading>
-                        <Text>Configure general settings for the document.</Text>
+                        <Heading size="lg">{steps[ActiveStep - 1].heading}</Heading>
+                        <Text>{steps[ActiveStep - 1].description}</Text>
                     </CardHeader>
 
                     <CardBody overflow="auto">
-                        <Stack spacing="4">
-                            <Input
-                                placeholder="Title"
-                                defaultValue="Junior_Backend_Developer.pdf"
-                            />
-                            <Select>
-                                <option value="no_restrictions">No restrictions</option>
-                                <option value="required_account">Required account</option>
-                            </Select>
-                        </Stack>
+                        {ActiveStep === 1 ? (
+                            <Text>1</Text>
+                        ) : ActiveStep === 2 ? (
+                            <Text>2</Text>
+                        ) : ActiveStep === 3 ? (
+                            <Text>3</Text>
+                        ) : (
+                            <Text>4</Text>
+                        )}
                     </CardBody>
+                    {/* <FirstStepCardBody /> */}
+
                     <CardFooter display={"flex"} flexDirection={"column"} rowGap={2}>
                         <Box mb={3}>
                             <Text mb={1}>
