@@ -128,7 +128,13 @@ const Table: React.FC = () => {
                         ))}
                     </Select>
                 </Flex>
-                <Flex justify={"space-between"} align={"center"} w={"100%"} mt={5}>
+                <Flex
+                    justify={"space-between"}
+                    align={"center"}
+                    w={"100%"}
+                    mt={5}
+                    flexWrap={"wrap"}
+                >
                     <Flex align={"center"} gap={3}>
                         Go to page:
                         <NumberInput
