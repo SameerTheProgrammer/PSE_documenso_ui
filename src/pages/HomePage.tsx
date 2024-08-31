@@ -10,11 +10,6 @@ const HomePage = () => {
                 <FileUpload />
                 <Filters />
                 <Table />
-                <div>heele</div>
-                <div>heele</div>
-                <div>heele</div>
-                <div>heele</div>
-                <div>heele</div>
             </VStack>
         </>
     );

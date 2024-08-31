@@ -10,9 +10,19 @@ import {
     Flex,
     Icon,
     Box,
+    Avatar,
+    AvatarGroup,
+    Popover,
+    PopoverBody,
+    PopoverContent,
+    PopoverTrigger,
+    Heading,
+    VStack,
+    PopoverArrow,
 } from "@chakra-ui/react";
 import { FaRegEdit } from "react-icons/fa";
 import { HiOutlineDotsVertical } from "react-icons/hi";
+import DetailedAvatar from "./../../utils/DetailedAvatar";
 
 const Table = () => {
     return (
@@ -37,43 +47,59 @@ const Table = () => {
                         <Tr _hover={{ bgColor: "gray.100" }}>
                             <Td>28/8/2024, 2:59 pm</Td>
                             <Td>FEB 2023.pdf</Td>
-                            <Td>SK</Td>
-                            <Td>Process</Td>
                             <Td>
-                                <Flex gap={5} align="center">
-                                    <Button leftIcon={<FaRegEdit />}>Edit</Button>
-                                    <Icon as={HiOutlineDotsVertical} />
-                                </Flex>
+                                <Popover isLazy trigger="hover">
+                                    <PopoverTrigger>
+                                        <AvatarGroup cursor="pointer" size="sm" max={3}>
+                                            <Avatar name="Ryan Florence" />
+                                            <Avatar name="Segun Adebayo" />
+                                            <Avatar name="Kent Dodds" />
+                                            <Avatar name="Prosper Otemuyiwa" />
+                                            <Avatar name="Christian Nwamba" />
+                                        </AvatarGroup>
+                                    </PopoverTrigger>
+                                    <PopoverContent>
+                                        <PopoverArrow />
+                                        <PopoverBody maxH={"250px"} overflowY={"scroll"}>
+                                            <VStack alignItems={"flex-start"}>
+                                                <Heading as="h5" size="sm" cursor="pointer">
+                                                    Completed
+                                                </Heading>
+                                                <DetailedAvatar
+                                                    title="sameer.kumar@example.com"
+                                                    subTitle="Signer"
+                                                    name="SK"
+                                                />
+                                                <DetailedAvatar
+                                                    title="chirag.kumar@example.com"
+                                                    subTitle="Signer"
+                                                    name="chirag"
+                                                />
+                                            </VStack>
+                                            <VStack mt={2} alignItems={"flex-start"}>
+                                                <Heading as="h5" size="sm" cursor="pointer">
+                                                    Waiting
+                                                </Heading>
+                                                <DetailedAvatar
+                                                    title="sameer.kumar@example.com"
+                                                    subTitle="Signer"
+                                                    name="SK"
+                                                />
+                                                <DetailedAvatar
+                                                    title="chirag.kumar@example.com"
+                                                    subTitle="Signer"
+                                                    name="chirag"
+                                                />
+                                                <DetailedAvatar
+                                                    title="sameer.kumar@example.com"
+                                                    subTitle="Signer"
+                                                    name="SK"
+                                                />
+                                            </VStack>
+                                        </PopoverBody>
+                                    </PopoverContent>
+                                </Popover>
                             </Td>
-                        </Tr>
-                        <Tr _hover={{ bgColor: "gray.100" }}>
-                            <Td>28/8/2024, 2:59 pm</Td>
-                            <Td>FEB 2023.pdf</Td>
-                            <Td>SK</Td>
-                            <Td>Process</Td>
-                            <Td>
-                                <Flex gap={5} align="center">
-                                    <Button leftIcon={<FaRegEdit />}>Edit</Button>
-                                    <Icon as={HiOutlineDotsVertical} />
-                                </Flex>
-                            </Td>
-                        </Tr>
-                        <Tr _hover={{ bgColor: "gray.100" }}>
-                            <Td>28/8/2024, 2:59 pm</Td>
-                            <Td>FEB 2023.pdf</Td>
-                            <Td>SK</Td>
-                            <Td>Process</Td>
-                            <Td>
-                                <Flex gap={5} align="center">
-                                    <Button leftIcon={<FaRegEdit />}>Edit</Button>
-                                    <Icon as={HiOutlineDotsVertical} />
-                                </Flex>
-                            </Td>
-                        </Tr>
-                        <Tr _hover={{ bgColor: "gray.100" }}>
-                            <Td>28/8/2024, 2:59 pm</Td>
-                            <Td>FEB 2023.pdf</Td>
-                            <Td>SK</Td>
                             <Td>Process</Td>
                             <Td>
                                 <Flex gap={5} align="center">

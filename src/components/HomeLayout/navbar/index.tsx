@@ -32,6 +32,7 @@ export function Navbar() {
             px={{ base: "20px", sm: "50px", md: "100px" }}
             border={0}
             bg="white"
+            zIndex={999}
         >
             <HStack w="full" alignItems="center" py={2} justifyContent="space-between">
                 {/* left content */}
