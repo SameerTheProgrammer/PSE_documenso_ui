@@ -10,7 +10,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@chakra-ui/react";
-import { GoClock } from "react-icons/go";
+import { GoClock, GoPeople } from "react-icons/go";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { IRecipientsStatus } from "../types/DocumentPagesTypes";
@@ -54,7 +54,7 @@ const recipientsList: IRecipientsStatus = {
 const DocumentEdit = () => {
     return (
         <Flex w={"100%"} direction={"column"}>
-            <Box>
+            <Box mb={5}>
                 <Button
                     p={0}
                     leftIcon={<IoIosArrowBack />}
@@ -84,11 +84,14 @@ const DocumentEdit = () => {
                     <Popover trigger="hover">
                         <PopoverTrigger>
                             <Button
+                                leftIcon={<GoPeople />}
                                 colorScheme="teal"
                                 variant="ghost"
                                 p={0}
                                 _hover={{ bg: "none" }}
                             >
+                                {Number(recipientsList.completed.length) +
+                                    Number(recipientsList.waiting.length)}{" "}
                                 Recipients
                             </Button>
                         </PopoverTrigger>
