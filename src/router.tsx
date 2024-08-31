@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import HomePage from "./pages/HomePage";
 import HomeLayout from "./layouts/HomeLayout";
+import DocumentEdit from "./pages/DocumentEditPage";
+import DocumentPage from "./pages/DocumentPage";
 
 export const router = createBrowserRouter([
     {
@@ -9,7 +10,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <HomePage />,
+                element: <DocumentPage />,
+            },
+            {
+                path: "/document/edit/:id",
+                element: <DocumentEdit />,
             },
         ],
     },

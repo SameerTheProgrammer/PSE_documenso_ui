@@ -59,7 +59,7 @@ const columns = [
         cell: (info: CellContext<ITableDocsData, string>) => (
             <Flex gap={5} align="center">
                 <Button leftIcon={<FaRegEdit />}>
-                    <ChakraLink as={ReactRouterLink} to={`/edit/${info.getValue()}`}>
+                    <ChakraLink as={ReactRouterLink} to={`document/edit/${info.getValue()}`}>
                         Edit
                     </ChakraLink>
                 </Button>
