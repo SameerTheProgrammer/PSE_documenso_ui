@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import {
     Table as ChakraTable,
     TableContainer,
@@ -11,20 +11,13 @@ import {
     Flex,
     Icon,
     Box,
-    Avatar,
-    AvatarGroup,
-    Popover,
-    PopoverBody,
-    PopoverContent,
-    PopoverTrigger,
-    PopoverArrow,
 } from "@chakra-ui/react";
 import { FaRegEdit } from "react-icons/fa";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { useReactTable, getCoreRowModel, flexRender, CellContext } from "@tanstack/react-table";
 import { TableDocsData } from "../../../data/docData";
-import { IRecipientsStatus, ITableDocsData, IRecipient } from "../../../types/HomePagesTypes";
-import RecipientList from "./RecipientList";
+import { ITableDocsData } from "../../../types/HomePagesTypes";
+import renderRecipientsPopover from "./RecipientsPopover";
 
 // Define columns
 const columns = [
@@ -41,40 +34,7 @@ const columns = [
     {
         accessorKey: "recipients",
         header: "Recipients",
-        cell: (info: CellContext<ITableDocsData, IRecipientsStatus>) => {
-            const { completed, waiting } = info.getValue();
-            const allRecipients = [...completed, ...waiting];
-            return (
-                <Popover trigger="hover">
-                    <PopoverTrigger>
-                        <AvatarGroup cursor="pointer" size="sm" max={3}>
-                            {allRecipients.map((recipient: IRecipient) => (
-                                <Avatar
-                                    key={recipient.id}
-                                    name={`${recipient.firstName} ${recipient.lastName}`}
-                                />
-                            ))}
-                        </AvatarGroup>
-                    </PopoverTrigger>
-                    <PopoverContent>
-                        <PopoverArrow />
-                        <PopoverBody maxH={"250px"} overflowY={"auto"}>
-                            {Object.keys(info.getValue()).map(
-                                (key) =>
-                                    info.getValue()[key as keyof IRecipientsStatus].length > 0 && (
-                                        <RecipientList
-                                            recipients={
-                                                info.getValue()[key as keyof IRecipientsStatus]
-                                            }
-                                            status={key}
-                                        />
-                                    ),
-                            )}
-                        </PopoverBody>
-                    </PopoverContent>
-                </Popover>
-            );
-        },
+        cell: renderRecipientsPopover,
     },
     {
         accessorKey: "status",
@@ -92,7 +52,7 @@ const columns = [
     },
 ];
 
-const Table = () => {
+const Table: React.FC = () => {
     const data = useMemo(() => TableDocsData, []);
 
     const table = useReactTable({
@@ -102,37 +62,35 @@ const Table = () => {
     });
 
     return (
-        <>
-            <Box as={TableContainer} w="100%" borderWidth={1} overflowX="auto">
-                <ChakraTable variant="simple">
-                    <Thead>
-                        {table.getHeaderGroups().map((headerGroup) => (
-                            <Tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => (
-                                    <Th key={header.id}>
-                                        {flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext(),
-                                        )}
-                                    </Th>
-                                ))}
-                            </Tr>
-                        ))}
-                    </Thead>
-                    <Tbody>
-                        {table.getRowModel().rows.map((row) => (
-                            <Tr key={row.id} _hover={{ bgColor: "gray.100" }}>
-                                {row.getVisibleCells().map((cell) => (
-                                    <Td key={cell.id}>
-                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                    </Td>
-                                ))}
-                            </Tr>
-                        ))}
-                    </Tbody>
-                </ChakraTable>
-            </Box>
-        </>
+        <Box as={TableContainer} w="100%" borderWidth={1} overflowX="auto">
+            <ChakraTable variant="simple">
+                <Thead>
+                    {table.getHeaderGroups().map((headerGroup) => (
+                        <Tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <Th key={header.id}>
+                                    {flexRender(
+                                        header.column.columnDef.header,
+                                        header.getContext(),
+                                    )}
+                                </Th>
+                            ))}
+                        </Tr>
+                    ))}
+                </Thead>
+                <Tbody>
+                    {table.getRowModel().rows.map((row) => (
+                        <Tr key={row.id} _hover={{ bgColor: "gray.100" }}>
+                            {row.getVisibleCells().map((cell) => (
+                                <Td key={cell.id}>
+                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                </Td>
+                            ))}
+                        </Tr>
+                    ))}
+                </Tbody>
+            </ChakraTable>
+        </Box>
     );
 };
 
