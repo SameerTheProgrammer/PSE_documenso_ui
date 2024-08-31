@@ -1,4 +1,4 @@
-import { ITableDocsData } from "../types/HomePagesTypes";
+import { ITableDocsData } from "../types/DocumentPagesTypes";
 
 export const TableDocsData: ITableDocsData[] = [
     {

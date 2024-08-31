@@ -8,7 +8,7 @@ import {
     PopoverBody,
 } from "@chakra-ui/react";
 import { CellContext } from "@tanstack/react-table";
-import { ITableDocsData, IRecipientsStatus, IRecipient } from "../../../types/HomePagesTypes";
+import { ITableDocsData, IRecipientsStatus, IRecipient } from "../../../types/DocumentPagesTypes";
 import RecipientList from "./RecipientList";
 
 const renderRecipientsPopover = (info: CellContext<ITableDocsData, IRecipientsStatus>) => {
