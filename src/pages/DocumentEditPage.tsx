@@ -12,6 +12,10 @@ import {
     PopoverBody,
     PopoverContent,
     PopoverTrigger,
+    Card,
+    CardBody,
+    CardHeader,
+    Text,
 } from "@chakra-ui/react";
 import { GoClock, GoPeople } from "react-icons/go";
 import { IoIosArrowBack } from "react-icons/io";
@@ -118,9 +122,9 @@ const DocumentEdit = () => {
                 </Flex>
             </Box>
 
-            <Flex height="100vh">
+            <Flex height="100vh" gap={6}>
                 {/* Left Side: PDF Viewer */}
-                <Box flex="2" borderWidth="1px" borderRadius="lg" overflow="hidden" padding="4">
+                <Box flex="4" borderWidth="1px" borderRadius="lg" overflow="hidden" padding="4">
                     {/* Replace with actual PDF viewer component */}
                     <Box height="100%" backgroundColor="gray.100">
                         PDF Viewer Placeholder
@@ -128,23 +132,66 @@ const DocumentEdit = () => {
                 </Box>
 
                 {/* Right Side: Configuration Panel */}
-                <Box
-                    flex="1"
+                <Card
+                    flex="3"
                     borderWidth="1px"
                     borderRadius="lg"
                     overflow="hidden"
-                    padding="4"
-                    marginLeft="4"
+                    shadow={"none"}
+                    borderColor={"none"}
                 >
-                    <Stack spacing="4">
-                        <Input placeholder="Title" defaultValue="Junior_Backend_Developer.pdf" />
-                        <Select>
-                            <option value="no_restrictions">No restrictions</option>
-                            <option value="required_account">Required account</option>
-                        </Select>
-                        <Button colorScheme="teal">Continue</Button>
-                    </Stack>
-                </Box>
+                    <CardHeader borderBottomWidth="1px">
+                        <Heading size="lg">General</Heading>
+                        <Text>Configure general settings for the document.</Text>
+                    </CardHeader>
+
+                    <CardBody overflow="auto">
+                        <Stack spacing="4">
+                            <Input
+                                placeholder="Title"
+                                defaultValue="Junior_Backend_Developer.pdf"
+                            />
+                            <Select>
+                                <option value="no_restrictions">No restrictions</option>
+                                <option value="required_account">Required account</option>
+                            </Select>
+                            <Button colorScheme="teal">Continue</Button>
+                        </Stack>
+                        <Stack spacing="4">
+                            <Input
+                                placeholder="Title"
+                                defaultValue="Junior_Backend_Developer.pdf"
+                            />
+                            <Select>
+                                <option value="no_restrictions">No restrictions</option>
+                                <option value="required_account">Required account</option>
+                            </Select>
+                            <Button colorScheme="teal">Continue</Button>
+                        </Stack>
+                        <Stack spacing="4">
+                            <Input
+                                placeholder="Title"
+                                defaultValue="Junior_Backend_Developer.pdf"
+                            />
+                            <Select>
+                                <option value="no_restrictions">No restrictions</option>
+                                <option value="required_account">Required account</option>
+                            </Select>
+                            <Button colorScheme="teal">Continue</Button>
+                        </Stack>
+                        <Stack spacing="4">
+                            <Input
+                                placeholder="Title"
+                                defaultValue="Junior_Backend_Developer.pdf"
+                            />
+                            <Select>
+                                <option value="no_restrictions">No restrictions</option>
+                                <option value="required_account">Required account</option>
+                            </Select>
+                            <Button colorScheme="teal">Continue</Button>
+                        </Stack>
+                    </CardBody>
+                </Card>
             </Flex>
         </Flex>
     );
