@@ -23,6 +23,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { IRecipientsStatus } from "../types/DocumentPagesTypes";
 import RecipientList from "../components/utils/RecipientList";
+import FirstStepCardBody from "../components/DocumentEditPage/FirstStepCardBody";
 
 const recipientsList: IRecipientsStatus = {
     completed: [
@@ -164,7 +165,7 @@ const DocumentEdit = () => {
 
                     <CardBody overflow="auto">
                         {ActiveStep === 1 ? (
-                            <Text>1</Text>
+                            <FirstStepCardBody />
                         ) : ActiveStep === 2 ? (
                             <Text>2</Text>
                         ) : ActiveStep === 3 ? (
