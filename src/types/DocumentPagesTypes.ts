@@ -4,7 +4,7 @@ export interface IRecipient {
     firstName: string;
     lastName: string;
     email: string;
-    role: "signer" | "viewer";
+    role: "SIGNER" | "VIEWER" | "APPROVER" | "RECEIVER";
 }
 
 // Define the type for the recipients status
@@ -18,7 +18,7 @@ export interface ITableDocsData {
     id: string;
     created: string;
     title: string;
-    status: "process" | "complete" | "draft" | "inbox";
+    status: "process" | "completed" | "draft" | "inbox";
     pdfUrl: string;
     recipients: IRecipientsStatus;
 }

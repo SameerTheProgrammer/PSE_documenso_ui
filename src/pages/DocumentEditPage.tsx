@@ -24,6 +24,7 @@ import { Link as ReactRouterLink } from "react-router-dom";
 import { IRecipientsStatus } from "../types/DocumentPagesTypes";
 import RecipientList from "../components/utils/RecipientList";
 import FirstStepCardBody from "../components/DocumentEditPage/FirstStepCardBody";
+import SecondStepCardBody from "../components/DocumentEditPage/SecondStepCardBody";
 
 const recipientsList: IRecipientsStatus = {
     completed: [
@@ -32,21 +33,21 @@ const recipientsList: IRecipientsStatus = {
             firstName: "Scott",
             lastName: "Lang",
             email: "scott.lang@example.com",
-            role: "signer",
+            role: "SIGNER",
         },
         {
             id: "r42",
             firstName: "Hope",
             lastName: "Van Dyne",
             email: "hope.van.dyne@example.com",
-            role: "viewer",
+            role: "VIEWER",
         },
         {
             id: "r43",
             firstName: "Nick",
             lastName: "Fury",
             email: "nick.fury@example.com",
-            role: "signer",
+            role: "SIGNER",
         },
     ],
     waiting: [
@@ -55,7 +56,7 @@ const recipientsList: IRecipientsStatus = {
             firstName: "Maria",
             lastName: "Hill",
             email: "maria.hill@example.com",
-            role: "viewer",
+            role: "VIEWER",
         },
     ],
 };
@@ -163,18 +164,17 @@ const DocumentEdit = () => {
                         <Text>{steps[ActiveStep - 1].description}</Text>
                     </CardHeader>
 
-                    <CardBody overflow="auto">
+                    <CardBody overflowY="auto">
                         {ActiveStep === 1 ? (
                             <FirstStepCardBody />
                         ) : ActiveStep === 2 ? (
-                            <Text>2</Text>
+                            <SecondStepCardBody />
                         ) : ActiveStep === 3 ? (
                             <Text>3</Text>
                         ) : (
                             <Text>4</Text>
                         )}
                     </CardBody>
-                    {/* <FirstStepCardBody /> */}
 
                     <CardFooter display={"flex"} flexDirection={"column"} rowGap={2}>
                         <Box mb={3}>
