@@ -28,7 +28,7 @@ import {
     getPaginationRowModel,
 } from "@tanstack/react-table";
 import { TableDocsData } from "../../../data/docData";
-import { ITableDocsData } from "../../../types/HomePagesTypes";
+import { ITableDocsData } from "../../../types/DocumentPagesTypes";
 import renderRecipientsPopover from "./RecipientsPopover";
 import { Link as ReactRouterLink } from "react-router-dom";
 
@@ -59,7 +59,7 @@ const columns = [
         cell: (info: CellContext<ITableDocsData, string>) => (
             <Flex gap={5} align="center">
                 <Button leftIcon={<FaRegEdit />}>
-                    <ChakraLink as={ReactRouterLink} to={`/edit/${info.getValue()}`}>
+                    <ChakraLink as={ReactRouterLink} to={`document/edit/${info.getValue()}`}>
                         Edit
                     </ChakraLink>
                 </Button>
