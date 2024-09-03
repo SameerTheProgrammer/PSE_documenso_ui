@@ -26,6 +26,7 @@ import RecipientList from "../components/utils/RecipientList";
 import FirstStepCardBody from "../components/DocumentEditPage/FirstStepCardBody";
 import SecondStepCardBody from "../components/DocumentEditPage/SecondStepCardBody";
 import ThirdStepCardBody from "../components/DocumentEditPage/ThirdStepCardBody";
+import ForthStepCardBody from "../components/DocumentEditPage/ForthStepCardBody";
 
 const recipientsList: IRecipientsStatus = {
     completed: [
@@ -173,7 +174,7 @@ const DocumentEdit = () => {
                         ) : ActiveStep === 3 ? (
                             <ThirdStepCardBody />
                         ) : (
-                            <Text>4</Text>
+                            <ForthStepCardBody />
                         )}
                     </CardBody>
 
