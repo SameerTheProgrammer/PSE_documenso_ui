@@ -37,7 +37,7 @@ const ForthStepCard: React.FC<IForthStepCard> = ({
                 overflow="hidden"
                 shadow={"none"}
                 borderColor={"none"}
-                h={"100%"}
+                minH={650}
             >
                 <DocumentEditCardHeading ActiveStep={ActiveStep} steps={steps} />
 
@@ -55,7 +55,7 @@ const ForthStepCard: React.FC<IForthStepCard> = ({
                                 <Text> Message </Text>
                                 <Text opacity={0.7}> (Optional)</Text>
                             </FormLabel>
-                            <Textarea maxH={250} />
+                            <Textarea minH={150} maxH={250} />
                         </FormControl>
                     </Flex>
                 </CardBody>

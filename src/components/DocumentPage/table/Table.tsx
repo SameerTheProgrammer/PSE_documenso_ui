@@ -58,11 +58,10 @@ const columns = [
         header: "Actions",
         cell: (info: CellContext<ITableDocsData, string>) => (
             <Flex gap={5} align="center">
-                <Button leftIcon={<FaRegEdit />}>
-                    <ChakraLink as={ReactRouterLink} to={`document/edit/${info.getValue()}`}>
-                        Edit
-                    </ChakraLink>
-                </Button>
+                <ChakraLink as={ReactRouterLink} to={`document/edit/${info.getValue()}`}>
+                    <Button leftIcon={<FaRegEdit />}>Edit</Button>
+                </ChakraLink>
+
                 <Icon as={HiOutlineDotsVertical} />
             </Flex>
         ),

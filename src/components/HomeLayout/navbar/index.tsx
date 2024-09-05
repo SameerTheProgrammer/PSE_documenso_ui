@@ -29,7 +29,7 @@ export function Navbar() {
             left={0}
             right={0}
             spacing={0}
-            px={{ base: "20px", sm: "50px", md: "100px" }}
+            px={{ base: "10px", sm: "20px", md: "50px" }}
             border={0}
             bg="white"
             zIndex={999}

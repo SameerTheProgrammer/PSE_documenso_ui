@@ -43,12 +43,12 @@ const FirstStepCard: React.FC<IFirstStepCard> = ({
                 overflow="hidden"
                 shadow={"none"}
                 borderColor={"none"}
-                h={"100%"}
+                minH={650}
             >
                 <DocumentEditCardHeading ActiveStep={ActiveStep} steps={steps} />
 
                 <CardBody overflowY="auto">
-                    <Flex w={"100%"} gap={5} direction={"column"}>
+                    <Flex h={350} w={"100%"} gap={5} direction={"column"}>
                         <FormControl>
                             <FormLabel>Title</FormLabel>
                             <Input name="title" borderRadius={5} />

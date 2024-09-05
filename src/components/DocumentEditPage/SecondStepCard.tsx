@@ -90,12 +90,12 @@ const SecondStepCard: React.FC<ISecondStepCard> = ({
                 overflow="hidden"
                 shadow={"none"}
                 borderColor={"none"}
-                h={"100%"}
+                minH={650}
             >
                 <DocumentEditCardHeading ActiveStep={ActiveStep} steps={steps} />
 
-                <CardBody overflowY="auto">
-                    <Flex overflowX={"hidden"} w={"100%"} gap={5} h={"100%"} direction={"column"}>
+                <CardBody overflowY="auto" overflowX={"hidden"}>
+                    <Flex w={"100%"} gap={5} h={350} direction={"column"}>
                         {forms.map((form, index) => (
                             <Flex w={"100%"} key={index} gap={4} align={"center"}>
                                 <FormControl isRequired>
@@ -118,13 +118,14 @@ const SecondStepCard: React.FC<ISecondStepCard> = ({
                                         }
                                     />
                                 </FormControl>
-                                <Flex mt={8} gap={2}>
+                                <Flex mt={8} gap={{ base: 1, lg: 2 }}>
                                     <FormControl>
                                         <Menu>
                                             <MenuButton
                                                 as={Button}
                                                 borderRadius={5}
                                                 rightIcon={<IoIosArrowDown />}
+                                                px={{ base: 2, sm: 4 }}
                                             >
                                                 {roleIcon[form.role]}
                                             </MenuButton>

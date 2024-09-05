@@ -76,23 +76,23 @@ const DocumentEdit = () => {
     return (
         <Flex w={"100%"} direction={"column"}>
             <Box mb={5}>
-                <Button
-                    p={0}
-                    leftIcon={<IoIosArrowBack />}
-                    colorScheme="teal"
-                    variant="ghost"
-                    _hover={{ bg: "none" }}
-                >
-                    <ChakraLink as={ReactRouterLink} to="/">
+                <ChakraLink as={ReactRouterLink} to="/">
+                    <Button
+                        p={0}
+                        leftIcon={<IoIosArrowBack />}
+                        colorScheme="teal"
+                        variant="ghost"
+                        _hover={{ bg: "none" }}
+                    >
                         Documents
-                    </ChakraLink>
-                </Button>
+                    </Button>
+                </ChakraLink>
 
                 <Heading as="h3" size="lg" color="teal" fontWeight="black" cursor="pointer">
                     FEB 2023.pdf
                 </Heading>
 
-                <Flex align={"center"} gap={5}>
+                <Flex align={"center"} gap={5} wrap="wrap">
                     <Button
                         leftIcon={<GoClock />}
                         colorScheme="teal"
@@ -136,9 +136,9 @@ const DocumentEdit = () => {
                 </Flex>
             </Box>
 
-            <Flex height="100vh" gap={4} direction={"column"}>
+            <Flex gap={4} direction={{ base: "column", lg: "row" }}>
                 {/* Left Side: PDF Viewer */}
-                <Box flex="4" borderWidth="1px" borderRadius="lg" overflow="hidden" padding="4">
+                <Box flex="4" minH={"min-content"} borderWidth="1px" borderRadius="lg" padding="4">
                     {/* Replace with actual PDF viewer component */}
                     <Box height="100%" backgroundColor="gray.100">
                         PDF Viewer Placeholder

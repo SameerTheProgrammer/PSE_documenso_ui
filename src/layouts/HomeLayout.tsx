@@ -7,8 +7,8 @@ const HomeLayout: React.FC = () => {
     return (
         <>
             <Navbar />
-            <Box w={"100%"} mt={100} px={{ base: "20px", sm: "50px", md: "100px" }}>
-                <VStack marginY={8} spacing={8} w="full" justify={"flex-start"}>
+            <Box w={"100%"} mt={{ base: 75, lg: 90 }} px={{ base: "10px", sm: "20px", md: "50px" }}>
+                <VStack marginBottom={10} spacing={8} w="full" justify={"flex-start"}>
                     <Outlet />
                 </VStack>
             </Box>

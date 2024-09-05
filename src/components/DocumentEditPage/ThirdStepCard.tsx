@@ -103,14 +103,13 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                 flex="3"
                 borderWidth="1px"
                 borderRadius="lg"
-                overflow="hidden"
                 shadow={"none"}
                 borderColor={"none"}
-                h={"100%"}
+                minH={650}
             >
                 <DocumentEditCardHeading ActiveStep={ActiveStep} steps={steps} />
 
-                <CardBody overflowY="auto">
+                <CardBody>
                     <Flex w={"100%"} gap={5} direction={"column"}>
                         <Menu>
                             <MenuButton
@@ -158,6 +157,7 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                             templateColumns="repeat(3, 1fr)"
                             justifyItems={"center"}
                             gap={2}
+                            flexWrap={"wrap"}
                         >
                             <GridItem w={"100%"} h={"100%"}>
                                 <Button
