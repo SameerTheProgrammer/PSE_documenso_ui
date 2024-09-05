@@ -9,24 +9,17 @@ import {
     PopoverBody,
     PopoverContent,
     PopoverTrigger,
-    Card,
-    CardBody,
-    CardHeader,
-    Text,
-    CardFooter,
-    ButtonGroup,
     useSteps,
-    Progress,
 } from "@chakra-ui/react";
 import { GoClock, GoPeople } from "react-icons/go";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { IRecipientsStatus } from "../types/DocumentPagesTypes";
 import RecipientList from "../components/utils/RecipientList";
-import FirstStepCardBody from "../components/DocumentEditPage/FirstStepCardBody";
-import SecondStepCardBody from "../components/DocumentEditPage/SecondStepCardBody";
-import ThirdStepCardBody from "../components/DocumentEditPage/ThirdStepCardBody";
-import ForthStepCardBody from "../components/DocumentEditPage/ForthStepCardBody";
+import FirstStepCard from "../components/DocumentEditPage/FirstStepCard";
+import ForthStepCard from "../components/DocumentEditPage/ForthStepCard";
+import SecondStepCard from "../components/DocumentEditPage/SecondStepCard";
+import ThirdStepCard from "../components/DocumentEditPage/ThirdStepCard";
 
 const recipientsList: IRecipientsStatus = {
     completed: [
@@ -83,23 +76,23 @@ const DocumentEdit = () => {
     return (
         <Flex w={"100%"} direction={"column"}>
             <Box mb={5}>
-                <Button
-                    p={0}
-                    leftIcon={<IoIosArrowBack />}
-                    colorScheme="teal"
-                    variant="ghost"
-                    _hover={{ bg: "none" }}
-                >
-                    <ChakraLink as={ReactRouterLink} to="/">
+                <ChakraLink as={ReactRouterLink} to="/">
+                    <Button
+                        p={0}
+                        leftIcon={<IoIosArrowBack />}
+                        colorScheme="teal"
+                        variant="ghost"
+                        _hover={{ bg: "none" }}
+                    >
                         Documents
-                    </ChakraLink>
-                </Button>
+                    </Button>
+                </ChakraLink>
 
                 <Heading as="h3" size="lg" color="teal" fontWeight="black" cursor="pointer">
                     FEB 2023.pdf
                 </Heading>
 
-                <Flex align={"center"} gap={5}>
+                <Flex align={"center"} gap={5} wrap="wrap">
                     <Button
                         leftIcon={<GoClock />}
                         colorScheme="teal"
@@ -143,9 +136,9 @@ const DocumentEdit = () => {
                 </Flex>
             </Box>
 
-            <Flex height="100vh" gap={6}>
+            <Flex gap={4} direction={{ base: "column", lg: "row" }}>
                 {/* Left Side: PDF Viewer */}
-                <Box flex="4" borderWidth="1px" borderRadius="lg" overflow="hidden" padding="4">
+                <Box flex="4" minH={"min-content"} borderWidth="1px" borderRadius="lg" padding="4">
                     {/* Replace with actual PDF viewer component */}
                     <Box height="100%" backgroundColor="gray.100">
                         PDF Viewer Placeholder
@@ -153,73 +146,38 @@ const DocumentEdit = () => {
                 </Box>
 
                 {/* Right Side: Configuration Panel */}
-                <Card
-                    flex="3"
-                    borderWidth="1px"
-                    borderRadius="lg"
-                    overflow="hidden"
-                    shadow={"none"}
-                    borderColor={"none"}
-                >
-                    <CardHeader borderBottomWidth="1px">
-                        <Heading size="lg">{steps[ActiveStep - 1].heading}</Heading>
-                        <Text>{steps[ActiveStep - 1].description}</Text>
-                    </CardHeader>
-
-                    <CardBody overflowY="auto">
-                        {ActiveStep === 1 ? (
-                            <FirstStepCardBody />
-                        ) : ActiveStep === 2 ? (
-                            <SecondStepCardBody />
-                        ) : ActiveStep === 3 ? (
-                            <ThirdStepCardBody />
-                        ) : (
-                            <ForthStepCardBody />
-                        )}
-                    </CardBody>
-
-                    <CardFooter display={"flex"} flexDirection={"column"} rowGap={2}>
-                        <Box mb={3}>
-                            <Text mb={1}>
-                                Step {ActiveStep} of {steps.length}
-                            </Text>
-                            <Progress value={progressPercent} size="xs" colorScheme="pink" />
-                        </Box>
-                        <ButtonGroup
-                            w={"100%"}
-                            display={"flex"}
-                            justifyContent={"space-between"}
-                            spacing="5"
-                        >
-                            <Button
-                                w={"100%"}
-                                colorScheme="blue"
-                                onClick={() => {
-                                    goToPrevious();
-                                }}
-                                isDisabled={ActiveStep == 1}
-                            >
-                                Go Back
-                            </Button>
-                            {ActiveStep === steps.length ? (
-                                <Button w={"100%"} colorScheme="teal">
-                                    Submit
-                                </Button>
-                            ) : (
-                                <Button
-                                    w={"100%"}
-                                    onClick={() => {
-                                        goToNext();
-                                    }}
-                                    colorScheme="teal"
-                                    isDisabled={ActiveStep == steps.length}
-                                >
-                                    Continue
-                                </Button>
-                            )}
-                        </ButtonGroup>
-                    </CardFooter>
-                </Card>
+                {ActiveStep === 1 ? (
+                    <FirstStepCard
+                        ActiveStep={ActiveStep}
+                        steps={steps}
+                        progressPercent={progressPercent}
+                        goToPrevious={goToPrevious}
+                        goToNext={goToNext}
+                    />
+                ) : ActiveStep === 2 ? (
+                    <SecondStepCard
+                        ActiveStep={ActiveStep}
+                        steps={steps}
+                        progressPercent={progressPercent}
+                        goToPrevious={goToPrevious}
+                        goToNext={goToNext}
+                    />
+                ) : ActiveStep === 3 ? (
+                    <ThirdStepCard
+                        ActiveStep={ActiveStep}
+                        steps={steps}
+                        progressPercent={progressPercent}
+                        goToPrevious={goToPrevious}
+                        goToNext={goToNext}
+                    />
+                ) : (
+                    <ForthStepCard
+                        ActiveStep={ActiveStep}
+                        steps={steps}
+                        progressPercent={progressPercent}
+                        goToPrevious={goToPrevious}
+                    />
+                )}
             </Flex>
         </Flex>
     );
