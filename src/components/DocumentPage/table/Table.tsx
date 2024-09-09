@@ -145,17 +145,18 @@ const Table: React.FC = () => {
                             defaultValue={table.getState().pagination.pageIndex + 1}
                             onChange={(value) => {
                                 value =
-                                    table.getPageCount() < Number(value) ||
-                                    table.getPageCount() > Number(value)
-                                        ? "1"
-                                        : value;
+                                    table.getPageCount() < Number(value)
+                                        ? String(table.getPageCount())
+                                        : Number(value) < 0
+                                          ? "1"
+                                          : value;
+
                                 const page = value ? Number(value) - 1 : 0;
                                 table.setPageIndex(page);
                             }}
                             min={1}
                             max={table.getPageCount()}
                             w={85}
-                            p={1}
                         >
                             <NumberInputField />
                         </NumberInput>
