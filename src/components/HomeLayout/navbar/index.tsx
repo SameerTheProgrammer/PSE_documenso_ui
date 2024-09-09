@@ -20,7 +20,7 @@ const menuItems: MenuProps = [
 ];
 
 export function Navbar() {
-    const { isOpen, onToggle } = useDisclosure();
+    const { isOpen, onToggle, onClose } = useDisclosure();
     return (
         <VStack
             w="full"
@@ -41,7 +41,7 @@ export function Navbar() {
                 <RightContent />
             </HStack>
             {/* mobile content */}
-            <MobileNav items={menuItems} isOpen={isOpen} />
+            <MobileNav items={menuItems} isOpen={isOpen} onClose={onClose} />
         </VStack>
     );
 }

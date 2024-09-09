@@ -15,7 +15,7 @@ export function NavItem({ label, uri }: NavItemProps) {
                 _hover={{ textDecoration: "none", bg: "teal.50" }}
                 _active={{ bg: "teal.100" }}
             >
-                <ChakraLink as={ReactRouterLink} to={uri}>
+                <ChakraLink as={ReactRouterLink} to={uri} _hover={{ textDecoration: "none" }}>
                     {label}
                 </ChakraLink>
             </Button>
