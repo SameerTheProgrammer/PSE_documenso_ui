@@ -94,7 +94,7 @@ const SecondStepCard: React.FC<ISecondStepCard> = ({
             >
                 <DocumentEditCardHeading ActiveStep={ActiveStep} steps={steps} />
 
-                <CardBody overflowY="auto" overflowX={"hidden"}>
+                <CardBody px={{ base: 3, md: 5 }} overflowY="auto" overflowX={"hidden"}>
                     <Flex w={"100%"} gap={5} h={350} direction={"column"}>
                         {forms.map((form, index) => (
                             <Flex w={"100%"} key={index} gap={4} align={"center"}>
@@ -181,7 +181,7 @@ const SecondStepCard: React.FC<ISecondStepCard> = ({
                             w={"100%"}
                             display={"flex"}
                             justifyContent={"space-between"}
-                            spacing="5"
+                            spacing={{ base: 2, md: 5 }}
                         >
                             <Button
                                 flex={4}

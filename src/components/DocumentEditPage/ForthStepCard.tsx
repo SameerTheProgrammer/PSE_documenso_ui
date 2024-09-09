@@ -41,7 +41,7 @@ const ForthStepCard: React.FC<IForthStepCard> = ({
             >
                 <DocumentEditCardHeading ActiveStep={ActiveStep} steps={steps} />
 
-                <CardBody>
+                <CardBody px={{ base: 3, md: 5 }}>
                     <Flex h={"100%"} w={"100%"} gap={5} direction={"column"}>
                         <FormControl>
                             <FormLabel display={"flex"} flexDir={"row"} gap={2}>

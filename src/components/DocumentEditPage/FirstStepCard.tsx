@@ -47,7 +47,7 @@ const FirstStepCard: React.FC<IFirstStepCard> = ({
             >
                 <DocumentEditCardHeading ActiveStep={ActiveStep} steps={steps} />
 
-                <CardBody overflowY="auto">
+                <CardBody px={{ base: 3, md: 5 }} overflowY="auto">
                     <Flex h={350} w={"100%"} gap={5} direction={"column"}>
                         <FormControl>
                             <FormLabel>Title</FormLabel>
