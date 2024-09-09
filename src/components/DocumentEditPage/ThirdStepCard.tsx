@@ -109,7 +109,7 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
             >
                 <DocumentEditCardHeading ActiveStep={ActiveStep} steps={steps} />
 
-                <CardBody>
+                <CardBody px={{ base: 3, md: 5 }}>
                     <Flex w={"100%"} gap={5} direction={"column"}>
                         <Menu>
                             <MenuButton
@@ -152,18 +152,18 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                             </MenuList>
                         </Menu>
                         <Grid
-                            w={"100%"}
+                            // w={"100%"}
                             templateRows="repeat(4, 1fr)"
                             templateColumns="repeat(3, 1fr)"
                             justifyItems={"center"}
-                            gap={2}
-                            flexWrap={"wrap"}
+                            gap={{ base: 1, sm: 2, xl: 4 }}
                         >
                             <GridItem w={"100%"} h={"100%"}>
                                 <Button
                                     w={"100%"}
                                     h={"100%"}
                                     py={6}
+                                    px={{ base: 2, xl: 4 }}
                                     variant={"outline"}
                                     leftIcon={<FaSignature />}
                                 >
@@ -175,6 +175,7 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                                     w={"100%"}
                                     h={"100%"}
                                     py={6}
+                                    px={{ base: 2, xl: 4 }}
                                     variant={"outline"}
                                     leftIcon={<MdOutlinePermContactCalendar />}
                                 >
@@ -186,6 +187,7 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                                     w={"100%"}
                                     h={"100%"}
                                     py={6}
+                                    px={{ base: 2, xl: 4 }}
                                     variant={"outline"}
                                     leftIcon={<MdOutlineMailOutline />}
                                 >
@@ -197,6 +199,7 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                                     w={"100%"}
                                     h={"100%"}
                                     py={6}
+                                    px={{ base: 2, xl: 4 }}
                                     variant={"outline"}
                                     leftIcon={<IoMdPerson />}
                                 >
@@ -208,6 +211,7 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                                     w={"100%"}
                                     h={"100%"}
                                     py={6}
+                                    px={{ base: 2, xl: 4 }}
                                     variant={"outline"}
                                     leftIcon={<CiCalendar />}
                                 >
@@ -219,6 +223,7 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                                     w={"100%"}
                                     h={"100%"}
                                     py={6}
+                                    px={{ base: 2, xl: 4 }}
                                     variant={"outline"}
                                     leftIcon={<RxText />}
                                 >
@@ -230,6 +235,7 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                                     w={"100%"}
                                     h={"100%"}
                                     py={6}
+                                    px={{ base: 2, xl: 4 }}
                                     variant={"outline"}
                                     leftIcon={<CiHashtag />}
                                 >
@@ -241,6 +247,7 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                                     w={"100%"}
                                     h={"100%"}
                                     py={6}
+                                    px={{ base: 2, xl: 4 }}
                                     variant={"outline"}
                                     leftIcon={<FaRegDotCircle />}
                                 >
@@ -252,6 +259,7 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                                     w={"100%"}
                                     h={"100%"}
                                     py={6}
+                                    px={{ base: 2, xl: 4 }}
                                     variant={"outline"}
                                     leftIcon={<IoIosCheckboxOutline />}
                                 >
@@ -263,6 +271,7 @@ const ThirdStepCard: React.FC<IThirdStepCard> = ({
                                     w={"100%"}
                                     h={"100%"}
                                     py={6}
+                                    px={{ base: 2, xl: 4 }}
                                     variant={"outline"}
                                     leftIcon={<IoIosArrowDown />}
                                 >
