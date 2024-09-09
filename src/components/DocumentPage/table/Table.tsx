@@ -76,6 +76,11 @@ const Table: React.FC = () => {
         columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        initialState: {
+            pagination: {
+                pageSize: 5,
+            },
+        },
     });
 
     return (
@@ -131,10 +136,10 @@ const Table: React.FC = () => {
                     justify={"space-between"}
                     align={"center"}
                     w={"100%"}
-                    mt={5}
+                    mt={{ base: 3, sm: 0 }}
                     flexWrap={"wrap"}
                 >
-                    <Flex align={"center"} gap={3}>
+                    <Flex align={"center"} gap={1}>
                         Go to page:
                         <NumberInput
                             defaultValue={table.getState().pagination.pageIndex + 1}
@@ -149,12 +154,13 @@ const Table: React.FC = () => {
                             }}
                             min={1}
                             max={table.getPageCount()}
-                            w={"30%"}
+                            w={85}
+                            p={1}
                         >
                             <NumberInputField />
                         </NumberInput>
                     </Flex>
-                    <Flex gap={1} minW={"max-content"} align={"center"}>
+                    <Flex gap={1} minW={"max-content"} align={"center"} mt={{ base: 3, sm: 0 }}>
                         <Text>Page</Text>
                         <Text fontWeight={"bold"}>
                             {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
